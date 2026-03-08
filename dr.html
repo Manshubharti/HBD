@@ -1,0 +1,151 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(270deg,#ff9a9e,#fad0c4,#fad0c4,#fbc2eb);
+background-size:800% 800%;
+animation:bgMove 10s infinite alternate;
+overflow:hidden;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+100%{background-position:100% 50%;}
+}
+
+.container{
+text-align:center;
+background:white;
+padding:40px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+h1{
+font-size:40px;
+color:#ff4d6d;
+}
+
+button{
+padding:15px 30px;
+border:none;
+border-radius:10px;
+background:#00b4d8;
+color:white;
+font-size:18px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+background:#0096c7;
+}
+
+/* Balloons */
+
+.balloon{
+position:absolute;
+bottom:-150px;
+width:60px;
+height:80px;
+border-radius:50%;
+animation:float 10s infinite;
+}
+
+.balloon:before{
+content:"";
+position:absolute;
+width:2px;
+height:50px;
+background:#555;
+left:50%;
+top:80px;
+}
+
+@keyframes float{
+0%{transform:translateY(0);}
+100%{transform:translateY(-120vh);}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎉 Happy Birthday Bobby 🎉</h1>
+
+<p>Wishing you happiness, success and lots of smiles today!</p>
+
+<button onclick="surprise()">Click for Surprise 🎁</button><br><br>
+<button onclick="toggleAudio()">play mudic</button>
+
+</div>
+
+<audio id="music">
+	<source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+
+function surprise(){
+
+confetti({
+particleCount:300,
+spread:120,
+origin:{y:0.6}
+});
+
+createBalloons();
+
+}
+
+function createBalloons(){
+
+for(let i=0;i<20;i++){
+
+let balloon=document.createElement("div");
+balloon.className="balloon";
+
+balloon.style.left=Math.random()*100+"%";
+balloon.style.background=
+["#ff4d6d","#ffd166","#06d6a0","#118ab2","#9b5de5"]
+[Math.floor(Math.random()*5)];
+
+balloon.style.animationDuration=(6+Math.random()*5)+"s";
+
+document.body.appendChild(balloon);
+
+}
+
+}
+
+function toggleAudio(){
+let audio = document.getElementById("music");
+	if (audio.paused) {
+		audio.play();
+		} else {
+			audio.pause();
+		}
+}
+
+</script>
+
+</body>
+</html>
